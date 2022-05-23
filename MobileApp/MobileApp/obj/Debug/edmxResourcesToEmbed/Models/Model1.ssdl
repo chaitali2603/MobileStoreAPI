@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MobileStoreModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="ImageUrl" Type="nvarchar(max)" />
+    <Property Name="Price" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Disscount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Brand" Type="nvarchar(max)" />
+    <Property Name="Storage" Type="nvarchar(max)" />
+    <Property Name="OS" Type="nvarchar(max)" />
+    <Property Name="Battery" Type="nvarchar(max)" />
+    <Property Name="RAM" Type="nvarchar(max)" />
+    <Property Name="CreatedDate" Type="date" />
+    <Property Name="UpdatedDate" Type="date" />
+    <Property Name="CreatedBy" Type="uniqueidentifier" />
+    <Property Name="UpdatedBy" Type="uniqueidentifier" />
+    <Property Name="IsDeleted" Type="bit" />
+  </EntityType>
+  <EntityContainer Name="MobileStoreModelStoreContainer">
+    <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>
