@@ -51,6 +51,8 @@ C:\mobile project\MobileApi\MobileApp\MobileApp\bin\roslyn\vbc.rsp
 C:\mobile project\MobileApi\MobileApp\MobileApp\bin\roslyn\VBCSCompiler.exe
 C:\mobile project\MobileApi\MobileApp\MobileApp\bin\roslyn\VBCSCompiler.exe.config
 C:\mobile project\MobileApi\MobileApp\MobileApp\bin\Antlr3.Runtime.dll
+C:\mobile project\MobileApi\MobileApp\MobileApp\bin\EntityFramework.dll
+C:\mobile project\MobileApi\MobileApp\MobileApp\bin\EntityFramework.SqlServer.dll
 C:\mobile project\MobileApi\MobileApp\MobileApp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\mobile project\MobileApi\MobileApp\MobileApp\bin\Microsoft.Web.Infrastructure.dll
 C:\mobile project\MobileApi\MobileApp\MobileApp\bin\Newtonsoft.Json.dll
@@ -65,6 +67,8 @@ C:\mobile project\MobileApi\MobileApp\MobileApp\bin\System.Web.WebPages.Deployme
 C:\mobile project\MobileApi\MobileApp\MobileApp\bin\System.Web.WebPages.dll
 C:\mobile project\MobileApi\MobileApp\MobileApp\bin\System.Web.WebPages.Razor.dll
 C:\mobile project\MobileApi\MobileApp\MobileApp\bin\WebGrease.dll
+C:\mobile project\MobileApi\MobileApp\MobileApp\bin\EntityFramework.xml
+C:\mobile project\MobileApi\MobileApp\MobileApp\bin\EntityFramework.SqlServer.xml
 C:\mobile project\MobileApi\MobileApp\MobileApp\bin\Newtonsoft.Json.xml
 C:\mobile project\MobileApi\MobileApp\MobileApp\bin\System.Net.Http.Formatting.xml
 C:\mobile project\MobileApi\MobileApp\MobileApp\bin\System.Web.Helpers.xml
@@ -83,7 +87,3 @@ C:\mobile project\MobileApi\MobileApp\MobileApp\obj\Debug\MobileApp.csproj.CoreC
 C:\mobile project\MobileApi\MobileApp\MobileApp\obj\Debug\MobileApp.csproj.CopyComplete
 C:\mobile project\MobileApi\MobileApp\MobileApp\obj\Debug\MobileApp.dll
 C:\mobile project\MobileApi\MobileApp\MobileApp\obj\Debug\MobileApp.pdb
-C:\mobile project\MobileApi\MobileApp\MobileApp\bin\EntityFramework.dll
-C:\mobile project\MobileApi\MobileApp\MobileApp\bin\EntityFramework.SqlServer.dll
-C:\mobile project\MobileApi\MobileApp\MobileApp\bin\EntityFramework.xml
-C:\mobile project\MobileApi\MobileApp\MobileApp\bin\EntityFramework.SqlServer.xml

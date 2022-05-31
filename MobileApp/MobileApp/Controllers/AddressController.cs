@@ -43,7 +43,7 @@ namespace MobileApp.Controllers
             try
             {
                 MobileStoreEntities1 db = new MobileStoreEntities1();
-                var _Address= db.Addresses.FirstOrDefault(x => x.UserId == AddressId);
+                var _Address= db.Addresses.FirstOrDefault(x => x.Id == AddressId);
                 if (_Address == null)
                 {
                     throw new Exception("There are no address availabale.");
@@ -61,13 +61,13 @@ namespace MobileApp.Controllers
 
         }
 
-        [HttpPost]
+        [HttpGet]
         public HttpResponseMessage GetAddressById(Guid AddressId)
         {
             try
             {
                 MobileStoreEntities1 db = new MobileStoreEntities1();
-                var _Address = db.Addresses.FirstOrDefault(x => x.Id == AddressId);
+                var _Address = db.Addresses.FirstOrDefault(x => x.Id == AddressId && x.IsDated!=true);
                 return Request.CreateResponse(HttpStatusCode.OK, _Address);
             }
             catch (Exception ex1)
@@ -81,7 +81,7 @@ namespace MobileApp.Controllers
             try
             {
                 MobileStoreEntities1 db = new MobileStoreEntities1();
-                var _Address = db.Addresses.Where(x => x.UserId == UserId);
+                var _Address = db.Addresses.Where(x => x.UserId == UserId).ToList();
                 return Request.CreateResponse(HttpStatusCode.OK, _Address);
             }
             catch (Exception ex1)
