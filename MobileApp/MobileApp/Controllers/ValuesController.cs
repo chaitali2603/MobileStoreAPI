@@ -4,18 +4,18 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using MobileApp.Models;
+//using MobileApp.Models;
 
 namespace MobileApp.Controllers
 {
     public class ValuesController : ApiController
     {
         // GET api/values
-        public IEnumerable<Product> Get()
-        {
-            MobileStoreEntities db = new MobileStoreEntities();
-            return db.Products.ToList();
-        }
+        //public IEnumerable<Product> Get()
+        //{
+        //    MobileStoreEntities db = new MobileStoreEntities();
+        //    return db.Products.ToList();
+        //}
 
         // GET api/values/5
         public string Get(int id)
