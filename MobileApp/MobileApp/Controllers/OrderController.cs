@@ -24,13 +24,11 @@ namespace MobileApp.Controllers
                     db.Orders.Add(order1);
                     db.SaveChanges();
                 }
-                else
-                {
+               
                     order1.UpdatedDate = DateTime.Now;
                     db.Entry(order1).State = System.Data.Entity.EntityState.Modified;
                     db.SaveChanges();
-                }
-                return Request.CreateResponse(HttpStatusCode.OK, order1);
+                    return Request.CreateResponse(HttpStatusCode.OK, order1);
             }
              
             catch (Exception ex)
