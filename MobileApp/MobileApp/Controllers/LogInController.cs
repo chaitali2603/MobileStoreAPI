@@ -6,9 +6,11 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace MobileApp.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class LogInController : ApiController
     {
 
@@ -28,7 +30,7 @@ namespace MobileApp.Controllers
                    
                     return Request.CreateResponse(HttpStatusCode.BadRequest, "Password invalid");
                 }
-                return Request.CreateResponse(HttpStatusCode.OK);
+                return Request.CreateResponse(HttpStatusCode.OK,user);
             }
             catch (Exception ex)
             {

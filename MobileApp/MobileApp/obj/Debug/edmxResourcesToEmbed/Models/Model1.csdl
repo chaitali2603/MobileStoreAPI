@@ -59,6 +59,16 @@
     <EntitySet Name="Products" EntityType="Self.Product" />
     <EntitySet Name="Orders" EntityType="MobileStoreModel.Order" />
     <EntitySet Name="OrderProducts" EntityType="MobileStoreModel.OrderProduct" />
+    <FunctionImport Name="SearchAllProduct" ReturnType="Collection(MobileStoreModel.SearchAllProduct_Result)">
+      <Parameter Name="pageno" Mode="In" Type="Int32" />
+      <Parameter Name="recordperpage" Mode="In" Type="Int32" />
+      <Parameter Name="Price" Mode="In" Type="Decimal" />
+      <Parameter Name="Ram" Mode="In" Type="String" />
+      <Parameter Name="Brand" Mode="In" Type="String" />
+      <Parameter Name="InternalStorage" Mode="In" Type="String" />
+      <Parameter Name="OpratingSystem" Mode="In" Type="String" />
+      <Parameter Name="search" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="Order">
     <Key>
@@ -88,4 +98,22 @@
     <Property Name="UpdatedBy" Type="Guid" />
     <Property Name="IsDated" Type="Boolean" />
   </EntityType>
+  <ComplexType Name="SearchAllProduct_Result">
+    <Property Type="Guid" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="true" />
+    <Property Type="String" Name="Description" Nullable="true" />
+    <Property Type="String" Name="ImageUrl" Nullable="true" />
+    <Property Type="Decimal" Name="Price" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Disscount" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="String" Name="Brand" Nullable="true" />
+    <Property Type="String" Name="Storage" Nullable="true" />
+    <Property Type="String" Name="OS" Nullable="true" />
+    <Property Type="String" Name="Battery" Nullable="true" />
+    <Property Type="String" Name="RAM" Nullable="true" />
+    <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="UpdatedDate" Nullable="true" Precision="23" />
+    <Property Type="Guid" Name="CreatedBy" Nullable="true" />
+    <Property Type="Guid" Name="UpdatedBy" Nullable="true" />
+    <Property Type="Boolean" Name="IsDeleted" Nullable="true" />
+  </ComplexType>
 </Schema>

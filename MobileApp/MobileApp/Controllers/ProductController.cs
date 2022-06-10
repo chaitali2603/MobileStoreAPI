@@ -1,15 +1,19 @@
-﻿using MobileApp.Models;
+﻿using MobileApp.Dtos;
+using MobileApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace MobileApp.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class ProductController : ApiController
     {
+
         [HttpPost]
        public HttpResponseMessage CreateProduct(Product product1 )
         {
@@ -37,7 +41,7 @@ namespace MobileApp.Controllers
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, ex1.Message);
             }
         }
-        [HttpPost]
+        [HttpGet]
         public HttpResponseMessage DeleteProduct(Guid ProductId)
         {
             try
@@ -66,6 +70,29 @@ namespace MobileApp.Controllers
                 MobileStoreEntities1 db = new MobileStoreEntities1();
                 var _Product= db.Products.FirstOrDefault(x => x.Id == ProductId);
                 return Request.CreateResponse(HttpStatusCode.OK, _Product);
+            }
+            catch (Exception ex1)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex1.Message);
+            }
+        }
+
+        private string Filetr1(List<filter> items) {
+           var strItems= items.Where(x => x.value == true).Select(x=>x.name).ToList();
+           return string.Join(",", strItems);
+        }
+       
+        [HttpPost]
+        public HttpResponseMessage SearchProduct(SearchProductDto model)
+        {
+            try
+            {
+                MobileStoreEntities1 db =new MobileStoreEntities1();
+
+                var Products=db.SearchAllProduct(model.pageno, model.recordperpage, model.Price,
+                    Filetr1(model.Ram),
+                    Filetr1(model.Brand), Filetr1(model.internalStorage), Filetr1(model.OpratingSystem), model.search);
+                return Request.CreateResponse(HttpStatusCode.OK, Products);
             }
             catch (Exception ex1)
             {

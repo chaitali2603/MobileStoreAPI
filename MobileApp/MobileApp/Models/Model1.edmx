@@ -86,6 +86,16 @@
           <Property Name="UpdatedBy" Type="uniqueidentifier" />
           <Property Name="IsDeleted" Type="bit" />
         </EntityType>
+        <Function Name="SearchAllProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pageno" Type="int" Mode="In" />
+          <Parameter Name="recordperpage" Type="int" Mode="In" />
+          <Parameter Name="Price" Type="decimal" Mode="In" />
+          <Parameter Name="Ram" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Brand" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="InternalStorage" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="OpratingSystem" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="search" Type="nvarchar(max)" Mode="In" />
+        </Function>
         <EntityContainer Name="MobileStoreModelStoreContainer">
           <EntitySet Name="Address" EntityType="Self.Address" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AppUser" EntityType="Self.AppUser" Schema="dbo" store:Type="Tables" />
@@ -156,6 +166,16 @@
           <EntitySet Name="Products" EntityType="Self.Product" />
           <EntitySet Name="Orders" EntityType="MobileStoreModel.Order" />
           <EntitySet Name="OrderProducts" EntityType="MobileStoreModel.OrderProduct" />
+          <FunctionImport Name="SearchAllProduct" ReturnType="Collection(MobileStoreModel.SearchAllProduct_Result)">
+            <Parameter Name="pageno" Mode="In" Type="Int32" />
+            <Parameter Name="recordperpage" Mode="In" Type="Int32" />
+            <Parameter Name="Price" Mode="In" Type="Decimal" />
+            <Parameter Name="Ram" Mode="In" Type="String" />
+            <Parameter Name="Brand" Mode="In" Type="String" />
+            <Parameter Name="InternalStorage" Mode="In" Type="String" />
+            <Parameter Name="OpratingSystem" Mode="In" Type="String" />
+            <Parameter Name="search" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="Order">
           <Key>
@@ -185,6 +205,24 @@
           <Property Name="UpdatedBy" Type="Guid" />
           <Property Name="IsDated" Type="Boolean" />
         </EntityType>
+        <ComplexType Name="SearchAllProduct_Result">
+          <Property Type="Guid" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="true" />
+          <Property Type="String" Name="Description" Nullable="true" />
+          <Property Type="String" Name="ImageUrl" Nullable="true" />
+          <Property Type="Decimal" Name="Price" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Disscount" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="Brand" Nullable="true" />
+          <Property Type="String" Name="Storage" Nullable="true" />
+          <Property Type="String" Name="OS" Nullable="true" />
+          <Property Type="String" Name="Battery" Nullable="true" />
+          <Property Type="String" Name="RAM" Nullable="true" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="UpdatedDate" Nullable="true" Precision="23" />
+          <Property Type="Guid" Name="CreatedBy" Nullable="true" />
+          <Property Type="Guid" Name="UpdatedBy" Nullable="true" />
+          <Property Type="Boolean" Name="IsDeleted" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -277,6 +315,28 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SearchAllProduct" FunctionName="MobileStoreModel.Store.SearchAllProduct">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MobileStoreModel.SearchAllProduct_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Disscount" ColumnName="Disscount" />
+                <ScalarProperty Name="Brand" ColumnName="Brand" />
+                <ScalarProperty Name="Storage" ColumnName="Storage" />
+                <ScalarProperty Name="OS" ColumnName="OS" />
+                <ScalarProperty Name="Battery" ColumnName="Battery" />
+                <ScalarProperty Name="RAM" ColumnName="RAM" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

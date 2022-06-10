@@ -12,6 +12,8 @@ namespace MobileApp.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class MobileStoreEntities1 : DbContext
     {
@@ -30,5 +32,42 @@ namespace MobileApp.Models
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<OrderProduct> OrderProducts { get; set; }
+    
+        public virtual ObjectResult<SearchAllProduct_Result> SearchAllProduct(Nullable<int> pageno, Nullable<int> recordperpage, Nullable<decimal> price, string ram, string brand, string internalStorage, string opratingSystem, string search)
+        {
+            var pagenoParameter = pageno.HasValue ?
+                new ObjectParameter("pageno", pageno) :
+                new ObjectParameter("pageno", typeof(int));
+    
+            var recordperpageParameter = recordperpage.HasValue ?
+                new ObjectParameter("recordperpage", recordperpage) :
+                new ObjectParameter("recordperpage", typeof(int));
+    
+            var priceParameter = price.HasValue ?
+                new ObjectParameter("Price", price) :
+                new ObjectParameter("Price", typeof(decimal));
+    
+            var ramParameter = ram != null ?
+                new ObjectParameter("Ram", ram) :
+                new ObjectParameter("Ram", typeof(string));
+    
+            var brandParameter = brand != null ?
+                new ObjectParameter("Brand", brand) :
+                new ObjectParameter("Brand", typeof(string));
+    
+            var internalStorageParameter = internalStorage != null ?
+                new ObjectParameter("InternalStorage", internalStorage) :
+                new ObjectParameter("InternalStorage", typeof(string));
+    
+            var opratingSystemParameter = opratingSystem != null ?
+                new ObjectParameter("OpratingSystem", opratingSystem) :
+                new ObjectParameter("OpratingSystem", typeof(string));
+    
+            var searchParameter = search != null ?
+                new ObjectParameter("search", search) :
+                new ObjectParameter("search", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SearchAllProduct_Result>("SearchAllProduct", pagenoParameter, recordperpageParameter, priceParameter, ramParameter, brandParameter, internalStorageParameter, opratingSystemParameter, searchParameter);
+        }
     }
 }

@@ -16,6 +16,8 @@ namespace MobileApp.Controllers
             try
             {
                 MobileStoreEntities1 db = new MobileStoreEntities1();
+
+
                 if (order1.Id == Guid.Empty)
                 {
                     order1.Id = Guid.NewGuid();
@@ -24,16 +26,16 @@ namespace MobileApp.Controllers
                     db.Orders.Add(order1);
                     db.SaveChanges();
                 }
-               
-                    order1.UpdatedDate = DateTime.Now;
-                    db.Entry(order1).State = System.Data.Entity.EntityState.Modified;
-                    db.SaveChanges();
-                    return Request.CreateResponse(HttpStatusCode.OK, order1);
+
+                order1.UpdatedDate = DateTime.Now;
+                db.Entry(order1).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                return Request.CreateResponse(HttpStatusCode.OK, order1);
             }
-             
+
             catch (Exception ex)
             {
-                 return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
             }
         }
         [HttpGet]
@@ -43,44 +45,45 @@ namespace MobileApp.Controllers
             {
                 MobileStoreEntities1 db = new MobileStoreEntities1();
                 var _Order = db.Orders.FirstOrDefault(x => x.Id == orderId);
-                if (_Order==null)
+                if (_Order == null)
                 {
                     throw new Exception("There Is No Order Like This");
                 }
                 _Order.IsDeleted = true;
                 _Order.CreatedDate = DateTime.Now;
                 _Order.UpdatedDate = DateTime.Now;
-               db.SaveChanges();
+                db.SaveChanges();
                 return Request.CreateResponse(HttpStatusCode.OK);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
             }
         }
-         [HttpGet]    
+        [HttpGet]
         public HttpResponseMessage GetOrderById(Guid orderId)
         {
             try
             {
                 MobileStoreEntities1 db = new MobileStoreEntities1();
-               var _Order = db.Addresses.FirstOrDefault(x => x.Id ==orderId && x.IsDated != true);
+                var _Order = db.Addresses.FirstOrDefault(x => x.Id == orderId && x.IsDated != true);
                 return Request.CreateResponse(HttpStatusCode.OK, _Order);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
             }
         }
+        [HttpGet]
         public HttpResponseMessage GetOrderByUserId(Guid userId)
         {
             try
             {
                 MobileStoreEntities1 db = new MobileStoreEntities1();
                 var _Order = db.Orders.FirstOrDefault(x => x.userId == userId);
-                return Request.CreateResponse(HttpStatusCode.OK,_Order);
+                return Request.CreateResponse(HttpStatusCode.OK, _Order);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
             }

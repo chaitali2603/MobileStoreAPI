@@ -81,6 +81,16 @@
     <Property Name="UpdatedBy" Type="uniqueidentifier" />
     <Property Name="IsDeleted" Type="bit" />
   </EntityType>
+  <Function Name="SearchAllProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="pageno" Type="int" Mode="In" />
+    <Parameter Name="recordperpage" Type="int" Mode="In" />
+    <Parameter Name="Price" Type="decimal" Mode="In" />
+    <Parameter Name="Ram" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="Brand" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="InternalStorage" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="OpratingSystem" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="search" Type="nvarchar(max)" Mode="In" />
+  </Function>
   <EntityContainer Name="MobileStoreModelStoreContainer">
     <EntitySet Name="Address" EntityType="Self.Address" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AppUser" EntityType="Self.AppUser" Schema="dbo" store:Type="Tables" />

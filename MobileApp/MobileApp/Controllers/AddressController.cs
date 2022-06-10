@@ -5,9 +5,11 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace MobileApp.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class AddressController : ApiController
     {
         [HttpPost]
@@ -37,7 +39,7 @@ namespace MobileApp.Controllers
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, ex1.Message);
             }
         }
-        [HttpPost]
+        [HttpGet]
         public HttpResponseMessage DeleteAddress(Guid AddressId)
         {
             try

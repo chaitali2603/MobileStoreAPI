@@ -41,12 +41,12 @@ namespace MobileApp.Controllers
             try
             {
                 MobileStoreEntities1 db = new MobileStoreEntities1();
-                var _Orderproduct = db.Orders.FirstOrDefault(x => x.Id == orderProductId);
+                var _Orderproduct = db.OrderProducts.FirstOrDefault(x => x.Id == orderProductId);
                 if (_Orderproduct == null)
                 {
                     throw new Exception("There Is No Order Product Like This");
                 }
-                _Orderproduct.IsDeleted = true;
+                _Orderproduct.IsDated = true;
                 _Orderproduct.CreatedDate = DateTime.Now;
                 _Orderproduct.UpdatedDate = DateTime.Now;
                 db.SaveChanges();
@@ -63,7 +63,7 @@ namespace MobileApp.Controllers
             try
             {
                 MobileStoreEntities1 db = new MobileStoreEntities1();
-                var _OrderProduct = db.Addresses.FirstOrDefault(x => x.Id == orderProductId && x.IsDated != true);
+                var _OrderProduct = db.OrderProducts.FirstOrDefault(x => x.Id == orderProductId && x.IsDated != true);
                 return Request.CreateResponse(HttpStatusCode.OK, _OrderProduct);
             }
             catch (Exception ex)
@@ -72,12 +72,12 @@ namespace MobileApp.Controllers
             }
         }
         [HttpGet]
-        public HttpResponseMessage GetOrderProductByUserId(Guid userId)
+        public HttpResponseMessage GetOrderProductByOrderId(Guid orderId)
         {
             try
             {
                 MobileStoreEntities1 db = new MobileStoreEntities1();
-                var _Order = db.Orders.FirstOrDefault(x => x.userId == userId);
+                var _Order = db.OrderProducts.Where(x => x.OrderId == orderId);
                 return Request.CreateResponse(HttpStatusCode.OK, _Order);
             }
             catch (Exception ex)

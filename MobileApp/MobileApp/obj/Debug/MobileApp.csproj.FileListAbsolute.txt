@@ -87,3 +87,6 @@ C:\mobile project\MobileApi\MobileApp\MobileApp\obj\Debug\MobileApp.csproj.CoreC
 C:\mobile project\MobileApi\MobileApp\MobileApp\obj\Debug\MobileApp.csproj.CopyComplete
 C:\mobile project\MobileApi\MobileApp\MobileApp\obj\Debug\MobileApp.dll
 C:\mobile project\MobileApi\MobileApp\MobileApp\obj\Debug\MobileApp.pdb
+C:\mobile project\MobileApi\MobileApp\MobileApp\bin\System.Web.Cors.dll
+C:\mobile project\MobileApi\MobileApp\MobileApp\bin\System.Web.Http.Cors.dll
+C:\mobile project\MobileApi\MobileApp\MobileApp\bin\System.Web.Http.Cors.xml
