@@ -14,16 +14,19 @@ namespace MobileApp.Controllers
     public class AddressController : ApiController
     {
         [HttpPost]
-        public HttpResponseMessage CreateAddress(Address address1)
+        public HttpResponseMessage CreateAddress([FromUri] string token, [FromBody] Address address1)
         {
             try
             {
+                var userID = TokenManager.ValidateToken(token);
+                var appUserId = Guid.Parse(userID);
                 MobileStoreEntities1 db = new MobileStoreEntities1();
-                if(address1.Id == Guid.Empty)
+                if (address1.Id == Guid.Empty)
                 {
                     address1.Id = Guid.NewGuid();
                     address1.CreatedDate = DateTime.Now;
                     address1.UpdatedDate = DateTime.Now;
+                    address1.UserId = appUserId;
                     db.Addresses.Add(address1);
                     db.SaveChanges();
                 }
@@ -33,7 +36,7 @@ namespace MobileApp.Controllers
                     db.Entry(address1).State = System.Data.Entity.EntityState.Modified;
                     db.SaveChanges();
                 }
-                return Request.CreateResponse(HttpStatusCode.OK,address1);
+                return Request.CreateResponse(HttpStatusCode.OK, address1);
             }
             catch (Exception ex1)
             {
@@ -46,12 +49,12 @@ namespace MobileApp.Controllers
             try
             {
                 MobileStoreEntities1 db = new MobileStoreEntities1();
-                var _Address= db.Addresses.FirstOrDefault(x => x.Id == AddressId);
+                var _Address = db.Addresses.FirstOrDefault(x => x.Id == AddressId);
                 if (_Address == null)
                 {
                     throw new Exception("There are no address availabale.");
                 }
-                _Address.IsDated= true;
+                _Address.IsDated = true;
                 _Address.UpdatedDate = DateTime.Now;
                 db.SaveChanges();
                 return Request.CreateResponse(HttpStatusCode.OK);
@@ -70,7 +73,7 @@ namespace MobileApp.Controllers
             try
             {
                 MobileStoreEntities1 db = new MobileStoreEntities1();
-                var _Address = db.Addresses.FirstOrDefault(x => x.Id == AddressId && x.IsDated!=true);
+                var _Address = db.Addresses.FirstOrDefault(x => x.Id == AddressId && x.IsDated != true);
                 return Request.CreateResponse(HttpStatusCode.OK, _Address);
             }
             catch (Exception ex1)
@@ -79,14 +82,14 @@ namespace MobileApp.Controllers
             }
         }
         [HttpGet]
-        public HttpResponseMessage GetAddressByUserId(string Token )
+        public HttpResponseMessage GetAddressByUserId(string Token)
         {
             try
             {
                 MobileStoreEntities1 db = new MobileStoreEntities1();
                 var UserId = TokenManager.ValidateToken(Token);
                 var AppUserId = Guid.Parse(UserId);
-                var _Address = db.Addresses.Where(x => x.UserId == AppUserId).ToList();
+                var _Address = db.Addresses.Where(x => x.UserId == AppUserId && x.IsDated == false).ToList();
                 return Request.CreateResponse(HttpStatusCode.OK, _Address);
             }
             catch (Exception ex1)

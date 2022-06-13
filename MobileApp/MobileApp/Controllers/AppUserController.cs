@@ -19,7 +19,7 @@ namespace MobileApp.Controllers
             try
             {
                 MobileStoreEntities1 db = new MobileStoreEntities1();
-                if(Appuser1.Id == Guid.Empty)
+                if (Appuser1.Id == Guid.Empty)
                 {
                     Appuser1.Id = Guid.NewGuid();
                     Appuser1.CreatedDate = DateTime.Now;
@@ -35,7 +35,7 @@ namespace MobileApp.Controllers
                 }
                 return Request.CreateResponse(HttpStatusCode.OK, Appuser1);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
             }
@@ -48,7 +48,7 @@ namespace MobileApp.Controllers
             {
                 MobileStoreEntities1 db = new MobileStoreEntities1();
                 var _Appuser = db.AppUsers.FirstOrDefault(x => x.Id == AppuserId);
-                if(_Appuser == null)
+                if (_Appuser == null)
                 {
                     throw new Exception("There are no user available");
                 }
@@ -64,15 +64,19 @@ namespace MobileApp.Controllers
         }
 
         [HttpGet]
-        public HttpResponseMessage GetAppUserById (string Token)
+        public HttpResponseMessage GetAppUserById(string Token)
         {
             try
             {
                 MobileStoreEntities1 db = new MobileStoreEntities1();
                 var UserId = TokenManager.ValidateToken(Token);
+                if (string.IsNullOrWhiteSpace(UserId))
+                {
+                    throw new Exception("Token is not valid");
+                }
                 var AppUserId = Guid.Parse(UserId);
                 var _Appuser = db.AppUsers.FirstOrDefault(x => x.Id == AppUserId && x.IsDeleted != true);
-                
+
                 return Request.CreateResponse(HttpStatusCode.OK, _Appuser);
             }
             catch (Exception ex)
