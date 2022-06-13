@@ -1,13 +1,16 @@
-﻿using MobileApp.Models;
+﻿using MobileApp.Helper;
+using MobileApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace MobileApp.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class AppUserController : ApiController
     {
         [HttpPost]
@@ -61,12 +64,15 @@ namespace MobileApp.Controllers
         }
 
         [HttpGet]
-        public HttpResponseMessage GetAppUserById (Guid AppuserId)
+        public HttpResponseMessage GetAppUserById (string Token)
         {
             try
             {
                 MobileStoreEntities1 db = new MobileStoreEntities1();
-                var _Appuser = db.AppUsers.FirstOrDefault(x => x.Id == AppuserId && x.IsDeleted != true);
+                var UserId = TokenManager.ValidateToken(Token);
+                var AppUserId = Guid.Parse(UserId);
+                var _Appuser = db.AppUsers.FirstOrDefault(x => x.Id == AppUserId && x.IsDeleted != true);
+                
                 return Request.CreateResponse(HttpStatusCode.OK, _Appuser);
             }
             catch (Exception ex)

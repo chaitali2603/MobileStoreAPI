@@ -1,4 +1,5 @@
-﻿using MobileApp.Models;
+﻿using MobileApp.Helper;
+using MobileApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -78,12 +79,14 @@ namespace MobileApp.Controllers
             }
         }
         [HttpGet]
-        public HttpResponseMessage GetAddressByUserId(Guid UserId)
+        public HttpResponseMessage GetAddressByUserId(string Token )
         {
             try
             {
                 MobileStoreEntities1 db = new MobileStoreEntities1();
-                var _Address = db.Addresses.Where(x => x.UserId == UserId).ToList();
+                var UserId = TokenManager.ValidateToken(Token);
+                var AppUserId = Guid.Parse(UserId);
+                var _Address = db.Addresses.Where(x => x.UserId == AppUserId).ToList();
                 return Request.CreateResponse(HttpStatusCode.OK, _Address);
             }
             catch (Exception ex1)
