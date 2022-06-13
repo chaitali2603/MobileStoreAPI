@@ -1,4 +1,5 @@
-﻿using MobileApp.Models;
+﻿using MobileApp.Helper;
+using MobileApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -75,12 +76,14 @@ namespace MobileApp.Controllers
             }
         }
         [HttpGet]
-        public HttpResponseMessage GetOrderByUserId(Guid userId)
+        public HttpResponseMessage GetOrderByUserId(string Token)
         {
             try
             {
                 MobileStoreEntities1 db = new MobileStoreEntities1();
-                var _Order = db.Orders.FirstOrDefault(x => x.userId == userId);
+                var UserId = TokenManager.ValidateToken(Token);
+                var AppUser = Guid.Parse(UserId);
+                var _Order = db.Orders.FirstOrDefault(x => x.userId == AppUser);
                 return Request.CreateResponse(HttpStatusCode.OK, _Order);
             }
             catch (Exception ex)
