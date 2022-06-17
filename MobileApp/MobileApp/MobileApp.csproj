@@ -192,10 +192,12 @@
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\OrderProductController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\ProductOrder.cs" />
     <Compile Include="Controllers\SignUpController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Dtos\LogInDto.cs" />
     <Compile Include="Dtos\LogInResponceDto.cs" />
+    <Compile Include="Dtos\OrderDto.cs" />
     <Compile Include="Dtos\SearchProductDto.cs" />
     <Compile Include="Dtos\SignUpDto.cs" />
     <Compile Include="Global.asax.cs">
@@ -206,6 +208,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AppUser.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetProductByOrderId_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Model1.Context.cs">

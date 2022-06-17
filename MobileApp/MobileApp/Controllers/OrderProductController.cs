@@ -77,7 +77,7 @@ namespace MobileApp.Controllers
             try
             {
                 MobileStoreEntities1 db = new MobileStoreEntities1();
-                var _Order = db.OrderProducts.Where(x => x.OrderId == orderId);
+                var _Order  = db.OrderProducts.Where(x => x.OrderId == orderId);
                 return Request.CreateResponse(HttpStatusCode.OK, _Order);
             }
             catch (Exception ex)

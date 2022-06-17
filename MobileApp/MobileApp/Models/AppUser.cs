@@ -25,5 +25,6 @@ namespace MobileApp.Models
         public Nullable<System.Guid> UpdatedBy { get; set; }
         public Nullable<bool> IsDeleted { get; set; }
         public string Email { get; set; }
+        public Nullable<int> UserType { get; set; }
     }
 }

@@ -95,8 +95,8 @@ C:\mobile project\MobileApi\MobileApp\MobileApp\bin\System.IdentityModel.Tokens.
 C:\mobile project\MobileApi\MobileApp\MobileApp\bin\Microsoft.IdentityModel.JsonWebTokens.xml
 C:\mobile project\MobileApi\MobileApp\MobileApp\bin\Microsoft.IdentityModel.Tokens.xml
 C:\mobile project\MobileApi\MobileApp\MobileApp\bin\System.IdentityModel.Tokens.Jwt.xml
-C:\mobile project\MobileApi\MobileApp\MobileApp\obj\Debug\MobileApp.csproj.AssemblyReference.cache
 C:\mobile project\MobileApi\MobileApp\MobileApp\bin\Microsoft.IdentityModel.Abstractions.dll
 C:\mobile project\MobileApi\MobileApp\MobileApp\bin\Microsoft.IdentityModel.Logging.dll
 C:\mobile project\MobileApi\MobileApp\MobileApp\bin\Microsoft.IdentityModel.Abstractions.xml
 C:\mobile project\MobileApi\MobileApp\MobileApp\bin\Microsoft.IdentityModel.Logging.xml
+C:\mobile project\MobileApi\MobileApp\MobileApp\obj\Debug\MobileApp.csproj.AssemblyReference.cache

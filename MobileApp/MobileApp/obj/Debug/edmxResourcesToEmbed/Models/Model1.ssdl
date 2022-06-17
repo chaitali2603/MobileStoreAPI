@@ -31,6 +31,7 @@
     <Property Name="UpdatedBy" Type="uniqueidentifier" />
     <Property Name="IsDeleted" Type="bit" />
     <Property Name="Email" Type="nvarchar(max)" />
+    <Property Name="UserType" Type="int" />
   </EntityType>
   <EntityType Name="Order">
     <Key>
@@ -59,6 +60,7 @@
     <Property Name="CreatedBy" Type="uniqueidentifier" />
     <Property Name="UpdatedBy" Type="uniqueidentifier" />
     <Property Name="IsDated" Type="bit" />
+    <Property Name="Quantity" Type="decimal" Precision="18" Scale="0" />
   </EntityType>
   <EntityType Name="Product">
     <Key>
@@ -81,6 +83,9 @@
     <Property Name="UpdatedBy" Type="uniqueidentifier" />
     <Property Name="IsDeleted" Type="bit" />
   </EntityType>
+  <Function Name="GetProductByOrderId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="OrderId" Type="uniqueidentifier" Mode="In" />
+  </Function>
   <Function Name="SearchAllProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="pageno" Type="int" Mode="In" />
     <Parameter Name="recordperpage" Type="int" Mode="In" />

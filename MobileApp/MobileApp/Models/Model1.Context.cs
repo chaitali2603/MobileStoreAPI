@@ -29,9 +29,18 @@ namespace MobileApp.Models
     
         public virtual DbSet<Address> Addresses { get; set; }
         public virtual DbSet<AppUser> AppUsers { get; set; }
-        public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<OrderProduct> OrderProducts { get; set; }
+        public virtual DbSet<Product> Products { get; set; }
+    
+        public virtual ObjectResult<GetProductByOrderId_Result> GetProductByOrderId(Nullable<System.Guid> orderId)
+        {
+            var orderIdParameter = orderId.HasValue ?
+                new ObjectParameter("OrderId", orderId) :
+                new ObjectParameter("OrderId", typeof(System.Guid));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetProductByOrderId_Result>("GetProductByOrderId", orderIdParameter);
+        }
     
         public virtual ObjectResult<SearchAllProduct_Result> SearchAllProduct(Nullable<int> pageno, Nullable<int> recordperpage, Nullable<decimal> price, string ram, string brand, string internalStorage, string opratingSystem, string search)
         {

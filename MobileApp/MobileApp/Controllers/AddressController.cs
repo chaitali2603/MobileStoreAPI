@@ -27,6 +27,7 @@ namespace MobileApp.Controllers
                     address1.CreatedDate = DateTime.Now;
                     address1.UpdatedDate = DateTime.Now;
                     address1.UserId = appUserId;
+                    address1.IsDated = false;
                     db.Addresses.Add(address1);
                     db.SaveChanges();
                 }

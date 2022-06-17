@@ -25,6 +25,7 @@ namespace MobileApp.Controllers
                     product1.Id = Guid.NewGuid();
                     product1.CreatedDate = DateTime.Now;
                     product1.UpdatedDate = DateTime.Now;
+                    product1.IsDeleted = false;
                     db.Products.Add(product1);
                     db.SaveChanges();
                 }

@@ -1,4 +1,5 @@
-﻿using MobileApp.Helper;
+﻿using MobileApp.Dtos;
+using MobileApp.Helper;
 using MobileApp.Models;
 using System;
 using System.Collections.Generic;
@@ -6,30 +7,57 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace MobileApp.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class OrderController : ApiController
     {
-        [HttpPost]
-        public HttpResponseMessage CreateOrder(Order order1)
+        public HttpResponseMessage GetProductByOrderId(Guid OrderId)
         {
             try
             {
                 MobileStoreEntities1 db = new MobileStoreEntities1();
+                var Result = db.GetProductByOrderId(OrderId);
+                return Request.CreateResponse(HttpStatusCode.OK, Result);
 
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
 
-                if (order1.Id == Guid.Empty)
+        }
+        [HttpPost]
+        public HttpResponseMessage CreateOrder([FromUri] string token, [FromBody] OrderDto order1)
+        {
+            try
+            {
+                var userID = TokenManager.ValidateToken(token);
+                var appUserId = Guid.Parse(userID);
+                MobileStoreEntities1 db = new MobileStoreEntities1();
+
+                order1.Order.userId = appUserId;
+                if (order1.Order.Id == Guid.Empty)
                 {
-                    order1.Id = Guid.NewGuid();
-                    order1.CreatedDate = DateTime.Now;
-                    order1.UpdatedDate = DateTime.Now;
-                    db.Orders.Add(order1);
+                    order1.Order.Id = Guid.NewGuid();
+                    order1.Order.CreatedDate = DateTime.Now;
+                    order1.Order.UpdatedDate = DateTime.Now;
+                    db.Orders.Add(order1.Order);
                     db.SaveChanges();
                 }
 
-                order1.UpdatedDate = DateTime.Now;
-                db.Entry(order1).State = System.Data.Entity.EntityState.Modified;
+                order1.Order.UpdatedDate = DateTime.Now;
+                db.Entry(order1.Order).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+
+                foreach (var Product in order1.OrderProduct)
+                {
+                    Product.Id = Guid.NewGuid();
+                    Product.OrderId = order1.Order.Id;
+                }
+                db.OrderProducts.AddRange(order1.OrderProduct);
                 db.SaveChanges();
                 return Request.CreateResponse(HttpStatusCode.OK, order1);
             }
@@ -83,7 +111,7 @@ namespace MobileApp.Controllers
                 MobileStoreEntities1 db = new MobileStoreEntities1();
                 var UserId = TokenManager.ValidateToken(Token);
                 var AppUser = Guid.Parse(UserId);
-                var _Order = db.Orders.FirstOrDefault(x => x.userId == AppUser);
+                var _Order = db.Orders.Where(x => x.userId == AppUser).ToList();
                 return Request.CreateResponse(HttpStatusCode.OK, _Order);
             }
             catch (Exception ex)
@@ -92,4 +120,7 @@ namespace MobileApp.Controllers
             }
         }
     }
+
+
+
 }

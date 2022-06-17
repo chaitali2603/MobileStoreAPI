@@ -10,19 +10,18 @@
 namespace MobileApp.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class OrderProduct
+    public partial class GetProductByOrderId_Result
     {
-        public System.Guid Id { get; set; }
-        public Nullable<System.Guid> OrderId { get; set; }
-        public Nullable<System.Guid> ProductId { get; set; }
-        public string Price { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
-        public Nullable<System.DateTime> UpdatedDate { get; set; }
-        public Nullable<System.Guid> CreatedBy { get; set; }
-        public Nullable<System.Guid> UpdatedBy { get; set; }
-        public Nullable<bool> IsDated { get; set; }
+        public System.Guid OrderId { get; set; }
+        public System.Guid ProductId { get; set; }
+        public string Price { get; set; }
         public Nullable<decimal> Quantity { get; set; }
+        public string ProductName { get; set; }
+        public string Address { get; set; }
+        public string City { get; set; }
+        public string State { get; set; }
+        public Nullable<decimal> Pincode { get; set; }
     }
 }
