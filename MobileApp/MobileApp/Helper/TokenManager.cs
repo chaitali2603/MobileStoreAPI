@@ -12,14 +12,16 @@ namespace MobileApp.Helper
     public static class TokenManager
     {
         static string Secret = "QWJjZDEyM2tqcXdlb2lxdXdvZWl1cTg3MjMyMzJqaGoyaDNqMjMyMw==";
-        public static string GenerateToken(Guid Id)
+        public static string GenerateToken(Guid Id, int? UserType)
         {
             byte[] key = Convert.FromBase64String(Secret);
             SymmetricSecurityKey securityKey = new SymmetricSecurityKey(key);
             SecurityTokenDescriptor descriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new[] {
-                new Claim(ClaimTypes.NameIdentifier, Id.ToString())
+                new Claim(ClaimTypes.NameIdentifier, Id.ToString()),
+                 new Claim(ClaimTypes.Name, UserType.ToString())
+
             }),
                 Expires = DateTime.UtcNow.AddDays(1),
                 SigningCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256Signature)
@@ -71,6 +73,30 @@ namespace MobileApp.Helper
             Claim usernameClaim = identity.FindFirst(ClaimTypes.NameIdentifier);
             username = usernameClaim.Value;
             return username;
+        }
+        public static List<string> ValidateTokenWithType(string token)
+        {
+            string username = null;
+            ClaimsPrincipal principal = GetPrincipal(token);
+            if (principal == null)
+                return null;
+            ClaimsIdentity identity = null;
+            try
+            {
+                identity = (ClaimsIdentity)principal.Identity;
+            }
+            catch (NullReferenceException)
+            {
+                return null;
+            }
+            Claim usernameClaim = identity.FindFirst(ClaimTypes.NameIdentifier);
+            Claim nameClaim = identity.FindFirst(ClaimTypes.Name);
+            List<string> str = new List<string>();
+            username = usernameClaim.Value;
+            str.Add(usernameClaim.Value);
+            str.Add(nameClaim.Value);
+            return str;
+            //return { username,nameClaim.Value};
         }
 
 

@@ -49,7 +49,7 @@ namespace MobileApp.Controllers
                     return Request.CreateResponse(HttpStatusCode.BadRequest, "Password invalid");
                 }
                 LogInResponceDto logInResponce = new LogInResponceDto();
-                logInResponce.Token = TokenManager.GenerateToken(user.Id);
+                logInResponce.Token = TokenManager.GenerateToken(user.Id,user.UserType);
 
                 logInResponce.User = user;
 

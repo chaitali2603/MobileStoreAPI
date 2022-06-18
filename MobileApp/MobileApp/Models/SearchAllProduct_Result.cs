@@ -13,6 +13,7 @@ namespace MobileApp.Models
     
     public partial class SearchAllProduct_Result
     {
+        public Nullable<int> TotalCount { get; set; }
         public System.Guid Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
@@ -29,5 +30,6 @@ namespace MobileApp.Models
         public Nullable<System.Guid> CreatedBy { get; set; }
         public Nullable<System.Guid> UpdatedBy { get; set; }
         public Nullable<bool> IsDeleted { get; set; }
+        public string Colour { get; set; }
     }
 }

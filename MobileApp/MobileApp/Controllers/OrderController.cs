@@ -109,9 +109,21 @@ namespace MobileApp.Controllers
             try
             {
                 MobileStoreEntities1 db = new MobileStoreEntities1();
-                var UserId = TokenManager.ValidateToken(Token);
-                var AppUser = Guid.Parse(UserId);
-                var _Order = db.Orders.Where(x => x.userId == AppUser).ToList();
+                var users = TokenManager.ValidateTokenWithType(Token);
+                var AppUser = Guid.Parse(users.FirstOrDefault());
+
+                var userType = users.LastOrDefault();
+                var _Order = db.GetOrderByUserIdAndUserType(userType, AppUser);
+                //List<Order> _Order;
+                //if (userType != "2")
+                //{
+                //    _Order = db.Orders.Where(x => x.userId == AppUser).OrderByDescending(x => x.CreatedDate).ToList();
+                //}
+                //else
+                //{
+                //    _Order = db.Orders.OrderByDescending(x => x.CreatedDate).ToList();
+                //}
+
                 return Request.CreateResponse(HttpStatusCode.OK, _Order);
             }
             catch (Exception ex)

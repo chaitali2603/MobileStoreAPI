@@ -11,18 +11,11 @@ namespace MobileApp.Models
 {
     using System;
     
-    public partial class GetProductByOrderId_Result
+    public partial class OrderAllProduct_Result
     {
-        public Nullable<int> TotalCount { get; set; }
+        public string FirstName { get; set; }
+        public string LasttName { get; set; }
+        public System.Guid Id { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
-        public System.Guid OrderId { get; set; }
-        public System.Guid ProductId { get; set; }
-        public string Price { get; set; }
-        public Nullable<decimal> Quantity { get; set; }
-        public string ProductName { get; set; }
-        public string Address { get; set; }
-        public string City { get; set; }
-        public string State { get; set; }
-        public Nullable<decimal> Pincode { get; set; }
     }
 }
