@@ -15,21 +15,23 @@ namespace MobileApp.Models
     {
         public Nullable<int> TotalCount { get; set; }
         public System.Guid Id { get; set; }
-        public string Name { get; set; }
+        public string ModelName { get; set; }
         public string Description { get; set; }
         public string ImageUrl { get; set; }
-        public Nullable<decimal> Price { get; set; }
-        public Nullable<decimal> Disscount { get; set; }
+        public decimal Price { get; set; }
+        public decimal Disscount { get; set; }
         public string Brand { get; set; }
         public string Storage { get; set; }
         public string OS { get; set; }
         public string Battery { get; set; }
         public string RAM { get; set; }
-        public Nullable<System.DateTime> CreatedDate { get; set; }
-        public Nullable<System.DateTime> UpdatedDate { get; set; }
-        public Nullable<System.Guid> CreatedBy { get; set; }
-        public Nullable<System.Guid> UpdatedBy { get; set; }
-        public Nullable<bool> IsDeleted { get; set; }
+        public System.DateTime CreatedDate { get; set; }
+        public System.DateTime UpdatedDate { get; set; }
+        public System.Guid CreatedBy { get; set; }
+        public System.Guid UpdatedBy { get; set; }
+        public bool IsDeleted { get; set; }
         public string Colour { get; set; }
+        public string ManufactureYear { get; set; }
+        public string WarrantyPeriod { get; set; }
     }
 }

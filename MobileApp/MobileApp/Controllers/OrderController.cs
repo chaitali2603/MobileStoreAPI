@@ -95,7 +95,7 @@ namespace MobileApp.Controllers
             try
             {
                 MobileStoreEntities1 db = new MobileStoreEntities1();
-                var _Order = db.Addresses.FirstOrDefault(x => x.Id == orderId && x.IsDated != true);
+                var _Order = db.Addresses.FirstOrDefault(x => x.Id == orderId && x.IsDeleted != true);
                 return Request.CreateResponse(HttpStatusCode.OK, _Order);
             }
             catch (Exception ex)

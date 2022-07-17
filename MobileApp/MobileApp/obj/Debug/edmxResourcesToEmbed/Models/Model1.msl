@@ -14,7 +14,7 @@
           <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
           <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
           <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-          <ScalarProperty Name="IsDated" ColumnName="IsDated" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -23,7 +23,7 @@
         <MappingFragment StoreEntitySet="AppUser">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-          <ScalarProperty Name="LasttName" ColumnName="LasttName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
           <ScalarProperty Name="DOB" ColumnName="DOB" />
           <ScalarProperty Name="Password" ColumnName="Password" />
           <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
@@ -33,6 +33,7 @@
           <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
           <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="UserType" ColumnName="UserType" />
+          <ScalarProperty Name="MobNo" ColumnName="MobNo" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -63,7 +64,7 @@
           <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
           <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
           <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-          <ScalarProperty Name="IsDated" ColumnName="IsDated" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
           <ScalarProperty Name="Quantity" ColumnName="Quantity" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -72,7 +73,7 @@
       <EntityTypeMapping TypeName="MobileStoreModel.Product">
         <MappingFragment StoreEntitySet="Product">
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ModelName" ColumnName="ModelName" />
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
           <ScalarProperty Name="Price" ColumnName="Price" />
@@ -88,6 +89,8 @@
           <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
           <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
           <ScalarProperty Name="Colour" ColumnName="Colour" />
+          <ScalarProperty Name="ManufactureYear" ColumnName="ManufactureYear" />
+          <ScalarProperty Name="WarrantyPeriod" ColumnName="WarrantyPeriod" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -106,7 +109,7 @@
       <ResultMapping>
         <ComplexTypeMapping TypeName="MobileStoreModel.GetOrderByUserIdAndUserType_Result">
           <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-          <ScalarProperty Name="LasttName" ColumnName="LasttName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
         </ComplexTypeMapping>
@@ -129,22 +132,13 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="OrderAllProduct" FunctionName="MobileStoreModel.Store.OrderAllProduct">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="MobileStoreModel.OrderAllProduct_Result">
-          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-          <ScalarProperty Name="LasttName" ColumnName="LasttName" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="OrderAllProduct" FunctionName="MobileStoreModel.Store.OrderAllProduct" />
     <FunctionImportMapping FunctionImportName="SearchAllProduct" FunctionName="MobileStoreModel.Store.SearchAllProduct">
       <ResultMapping>
         <ComplexTypeMapping TypeName="MobileStoreModel.SearchAllProduct_Result">
           <ScalarProperty Name="TotalCount" ColumnName="TotalCount" />
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ModelName" ColumnName="ModelName" />
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
           <ScalarProperty Name="Price" ColumnName="Price" />
@@ -160,31 +154,16 @@
           <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
           <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
           <ScalarProperty Name="Colour" ColumnName="Colour" />
+          <ScalarProperty Name="ManufactureYear" ColumnName="ManufactureYear" />
+          <ScalarProperty Name="WarrantyPeriod" ColumnName="WarrantyPeriod" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="MobileStoreModel.Store.sp_alterdiagram" />
     <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="MobileStoreModel.Store.sp_creatediagram" />
     <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="MobileStoreModel.Store.sp_dropdiagram" />
-    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="MobileStoreModel.Store.sp_helpdiagramdefinition">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="MobileStoreModel.sp_helpdiagramdefinition_Result">
-          <ScalarProperty Name="version" ColumnName="version" />
-          <ScalarProperty Name="definition" ColumnName="definition" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="MobileStoreModel.Store.sp_helpdiagrams">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="MobileStoreModel.sp_helpdiagrams_Result">
-          <ScalarProperty Name="Database" ColumnName="Database" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="Owner" ColumnName="Owner" />
-          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="MobileStoreModel.Store.sp_helpdiagramdefinition" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="MobileStoreModel.Store.sp_helpdiagrams" />
     <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="MobileStoreModel.Store.sp_renamediagram" />
     <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="MobileStoreModel.Store.sp_upgraddiagrams" />
   </EntityContainerMapping>

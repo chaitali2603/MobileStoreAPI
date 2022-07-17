@@ -27,7 +27,7 @@ namespace MobileApp.Controllers
                     address1.CreatedDate = DateTime.Now;
                     address1.UpdatedDate = DateTime.Now;
                     address1.UserId = appUserId;
-                    address1.IsDated = false;
+                    address1.IsDeleted = false;
                     db.Addresses.Add(address1);
                     db.SaveChanges();
                 }
@@ -55,7 +55,7 @@ namespace MobileApp.Controllers
                 {
                     throw new Exception("There are no address availabale.");
                 }
-                _Address.IsDated = true;
+                _Address.IsDeleted = true;
                 _Address.UpdatedDate = DateTime.Now;
                 db.SaveChanges();
                 return Request.CreateResponse(HttpStatusCode.OK);
@@ -74,7 +74,7 @@ namespace MobileApp.Controllers
             try
             {
                 MobileStoreEntities1 db = new MobileStoreEntities1();
-                var _Address = db.Addresses.FirstOrDefault(x => x.Id == AddressId && x.IsDated != true);
+                var _Address = db.Addresses.FirstOrDefault(x => x.Id == AddressId && x.IsDeleted != true);
                 return Request.CreateResponse(HttpStatusCode.OK, _Address);
             }
             catch (Exception ex1)
@@ -90,7 +90,7 @@ namespace MobileApp.Controllers
                 MobileStoreEntities1 db = new MobileStoreEntities1();
                 var UserId = TokenManager.ValidateToken(Token);
                 var AppUserId = Guid.Parse(UserId);
-                var _Address = db.Addresses.Where(x => x.UserId == AppUserId && x.IsDated == false).ToList();
+                var _Address = db.Addresses.Where(x => x.UserId == AppUserId && x.IsDeleted == false).ToList();
                 return Request.CreateResponse(HttpStatusCode.OK, _Address);
             }
             catch (Exception ex1)

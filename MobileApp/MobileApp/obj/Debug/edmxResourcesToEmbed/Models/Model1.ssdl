@@ -14,7 +14,7 @@
     <Property Name="UpdatedDate" Type="datetime" />
     <Property Name="CreatedBy" Type="uniqueidentifier" />
     <Property Name="UpdatedBy" Type="uniqueidentifier" />
-    <Property Name="IsDated" Type="bit" />
+    <Property Name="IsDeleted" Type="bit" />
   </EntityType>
   <EntityType Name="AppUser">
     <Key>
@@ -22,7 +22,7 @@
     </Key>
     <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
     <Property Name="FirstName" Type="nvarchar(max)" />
-    <Property Name="LasttName" Type="nvarchar(max)" />
+    <Property Name="LastName" Type="nvarchar(max)" />
     <Property Name="DOB" Type="date" />
     <Property Name="Password" Type="nvarchar(max)" />
     <Property Name="CreatedDate" Type="datetime" />
@@ -32,6 +32,7 @@
     <Property Name="IsDeleted" Type="bit" />
     <Property Name="Email" Type="nvarchar(max)" />
     <Property Name="UserType" Type="int" />
+    <Property Name="MobNo" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="Order">
     <Key>
@@ -60,7 +61,7 @@
     <Property Name="UpdatedDate" Type="datetime" />
     <Property Name="CreatedBy" Type="uniqueidentifier" />
     <Property Name="UpdatedBy" Type="uniqueidentifier" />
-    <Property Name="IsDated" Type="bit" />
+    <Property Name="IsDeleted" Type="bit" />
     <Property Name="Quantity" Type="decimal" Precision="18" Scale="0" />
   </EntityType>
   <EntityType Name="Product">
@@ -68,22 +69,24 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
-    <Property Name="Name" Type="nvarchar(max)" />
-    <Property Name="Description" Type="nvarchar(max)" />
-    <Property Name="ImageUrl" Type="nvarchar(max)" />
-    <Property Name="Price" Type="decimal" Precision="18" Scale="2" />
-    <Property Name="Disscount" Type="decimal" Precision="18" Scale="2" />
-    <Property Name="Brand" Type="nvarchar(max)" />
-    <Property Name="Storage" Type="nvarchar(max)" />
-    <Property Name="OS" Type="nvarchar(max)" />
-    <Property Name="Battery" Type="nvarchar(max)" />
-    <Property Name="RAM" Type="nvarchar(max)" />
-    <Property Name="CreatedDate" Type="datetime" />
-    <Property Name="UpdatedDate" Type="datetime" />
-    <Property Name="CreatedBy" Type="uniqueidentifier" />
-    <Property Name="UpdatedBy" Type="uniqueidentifier" />
-    <Property Name="IsDeleted" Type="bit" />
-    <Property Name="Colour" Type="nvarchar(max)" />
+    <Property Name="ModelName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ImageUrl" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Disscount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Brand" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Storage" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="OS" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Battery" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="RAM" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UpdatedBy" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+    <Property Name="Colour" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ManufactureYear" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="WarrantyPeriod" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>

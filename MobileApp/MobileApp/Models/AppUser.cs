@@ -16,7 +16,7 @@ namespace MobileApp.Models
     {
         public System.Guid Id { get; set; }
         public string FirstName { get; set; }
-        public string LasttName { get; set; }
+        public string LastName { get; set; }
         public Nullable<System.DateTime> DOB { get; set; }
         public string Password { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
@@ -26,5 +26,6 @@ namespace MobileApp.Models
         public Nullable<bool> IsDeleted { get; set; }
         public string Email { get; set; }
         public Nullable<int> UserType { get; set; }
+        public string MobNo { get; set; }
     }
 }

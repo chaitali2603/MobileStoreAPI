@@ -30,7 +30,7 @@ namespace MobileApp.Controllers
                 AppUser App = new AppUser();
                 App.Id = Guid.NewGuid();
                 App.FirstName = model.FirstName;
-                App.LasttName = model.LastName;
+                App.LastName = model.LastName;
                 App.Password = model.Password;
                 App.Email = model.Email;
                 App.CreatedDate = DateTime.Now;

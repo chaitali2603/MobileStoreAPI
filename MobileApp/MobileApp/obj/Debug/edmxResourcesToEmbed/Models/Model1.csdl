@@ -14,7 +14,7 @@
     <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
     <Property Name="CreatedBy" Type="Guid" />
     <Property Name="UpdatedBy" Type="Guid" />
-    <Property Name="IsDated" Type="Boolean" />
+    <Property Name="IsDeleted" Type="Boolean" />
   </EntityType>
   <EntityType Name="AppUser">
     <Key>
@@ -22,7 +22,7 @@
     </Key>
     <Property Name="Id" Type="Guid" Nullable="false" />
     <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="LasttName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="DOB" Type="DateTime" Precision="0" />
     <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="CreatedDate" Type="DateTime" Precision="3" />
@@ -32,6 +32,7 @@
     <Property Name="IsDeleted" Type="Boolean" />
     <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="UserType" Type="Int32" />
+    <Property Name="MobNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="Order">
     <Key>
@@ -60,7 +61,7 @@
     <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
     <Property Name="CreatedBy" Type="Guid" />
     <Property Name="UpdatedBy" Type="Guid" />
-    <Property Name="IsDated" Type="Boolean" />
+    <Property Name="IsDeleted" Type="Boolean" />
     <Property Name="Quantity" Type="Decimal" Precision="18" Scale="0" />
   </EntityType>
   <EntityType Name="Product">
@@ -68,22 +69,24 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Guid" Nullable="false" />
-    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="ImageUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Price" Type="Decimal" Precision="18" Scale="2" />
-    <Property Name="Disscount" Type="Decimal" Precision="18" Scale="2" />
-    <Property Name="Brand" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Storage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="OS" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Battery" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="RAM" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
-    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
-    <Property Name="CreatedBy" Type="Guid" />
-    <Property Name="UpdatedBy" Type="Guid" />
-    <Property Name="IsDeleted" Type="Boolean" />
-    <Property Name="Colour" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ModelName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ImageUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Price" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Disscount" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Brand" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Storage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="OS" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Battery" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RAM" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Guid" Nullable="false" />
+    <Property Name="UpdatedBy" Type="Guid" Nullable="false" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="Colour" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ManufactureYear" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="WarrantyPeriod" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="sysdiagram">
     <Key>
@@ -109,7 +112,7 @@
     <FunctionImport Name="GetProductByOrderId" ReturnType="Collection(MobileStoreModel.GetProductByOrderId_Result)">
       <Parameter Name="OrderId" Mode="In" Type="Guid" />
     </FunctionImport>
-    <FunctionImport Name="OrderAllProduct" ReturnType="Collection(MobileStoreModel.OrderAllProduct_Result)">
+    <FunctionImport Name="OrderAllProduct">
       <Parameter Name="UserType" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="SearchAllProduct" ReturnType="Collection(MobileStoreModel.SearchAllProduct_Result)">
@@ -138,11 +141,11 @@
       <Parameter Name="diagramname" Mode="In" Type="String" />
       <Parameter Name="owner_id" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(MobileStoreModel.sp_helpdiagramdefinition_Result)">
+    <FunctionImport Name="sp_helpdiagramdefinition">
       <Parameter Name="diagramname" Mode="In" Type="String" />
       <Parameter Name="owner_id" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(MobileStoreModel.sp_helpdiagrams_Result)">
+    <FunctionImport Name="sp_helpdiagrams">
       <Parameter Name="diagramname" Mode="In" Type="String" />
       <Parameter Name="owner_id" Mode="In" Type="Int32" />
     </FunctionImport>
@@ -155,7 +158,7 @@
   </EntityContainer>
   <ComplexType Name="GetOrderByUserIdAndUserType_Result">
     <Property Type="String" Name="FirstName" Nullable="true" />
-    <Property Type="String" Name="LasttName" Nullable="true" />
+    <Property Type="String" Name="LastName" Nullable="true" />
     <Property Type="Guid" Name="Id" Nullable="false" />
     <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
   </ComplexType>
@@ -166,47 +169,32 @@
     <Property Type="Guid" Name="ProductId" Nullable="false" />
     <Property Type="String" Name="Price" Nullable="true" />
     <Property Type="Decimal" Name="Quantity" Nullable="true" Precision="18" Scale="0" />
-    <Property Type="String" Name="ProductName" Nullable="true" />
+    <Property Type="String" Name="ProductName" Nullable="false" />
     <Property Type="String" Name="Address" Nullable="true" />
     <Property Type="String" Name="City" Nullable="true" />
     <Property Type="String" Name="State" Nullable="true" />
     <Property Type="Decimal" Name="Pincode" Nullable="true" Precision="18" Scale="0" />
   </ComplexType>
-  <ComplexType Name="OrderAllProduct_Result">
-    <Property Type="String" Name="FirstName" Nullable="true" />
-    <Property Type="String" Name="LasttName" Nullable="true" />
-    <Property Type="Guid" Name="Id" Nullable="false" />
-    <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
-  </ComplexType>
   <ComplexType Name="SearchAllProduct_Result">
     <Property Type="Int32" Name="TotalCount" Nullable="true" />
     <Property Type="Guid" Name="Id" Nullable="false" />
-    <Property Type="String" Name="Name" Nullable="true" />
-    <Property Type="String" Name="Description" Nullable="true" />
-    <Property Type="String" Name="ImageUrl" Nullable="true" />
-    <Property Type="Decimal" Name="Price" Nullable="true" Precision="18" Scale="2" />
-    <Property Type="Decimal" Name="Disscount" Nullable="true" Precision="18" Scale="2" />
-    <Property Type="String" Name="Brand" Nullable="true" />
-    <Property Type="String" Name="Storage" Nullable="true" />
-    <Property Type="String" Name="OS" Nullable="true" />
-    <Property Type="String" Name="Battery" Nullable="true" />
-    <Property Type="String" Name="RAM" Nullable="true" />
-    <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
-    <Property Type="DateTime" Name="UpdatedDate" Nullable="true" Precision="23" />
-    <Property Type="Guid" Name="CreatedBy" Nullable="true" />
-    <Property Type="Guid" Name="UpdatedBy" Nullable="true" />
-    <Property Type="Boolean" Name="IsDeleted" Nullable="true" />
-    <Property Type="String" Name="Colour" Nullable="true" />
-  </ComplexType>
-  <ComplexType Name="sp_helpdiagramdefinition_Result">
-    <Property Type="Int32" Name="version" Nullable="true" />
-    <Property Type="Binary" Name="definition" Nullable="true" />
-  </ComplexType>
-  <ComplexType Name="sp_helpdiagrams_Result">
-    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
-    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
-    <Property Type="Int32" Name="ID" Nullable="false" />
-    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
-    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+    <Property Type="String" Name="ModelName" Nullable="false" />
+    <Property Type="String" Name="Description" Nullable="false" />
+    <Property Type="String" Name="ImageUrl" Nullable="false" />
+    <Property Type="Decimal" Name="Price" Nullable="false" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="Disscount" Nullable="false" Precision="18" Scale="2" />
+    <Property Type="String" Name="Brand" Nullable="false" />
+    <Property Type="String" Name="Storage" Nullable="false" />
+    <Property Type="String" Name="OS" Nullable="false" />
+    <Property Type="String" Name="Battery" Nullable="false" />
+    <Property Type="String" Name="RAM" Nullable="false" />
+    <Property Type="DateTime" Name="CreatedDate" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="UpdatedDate" Nullable="false" Precision="23" />
+    <Property Type="Guid" Name="CreatedBy" Nullable="false" />
+    <Property Type="Guid" Name="UpdatedBy" Nullable="false" />
+    <Property Type="Boolean" Name="IsDeleted" Nullable="false" />
+    <Property Type="String" Name="Colour" Nullable="false" />
+    <Property Type="String" Name="ManufactureYear" Nullable="false" />
+    <Property Type="String" Name="WarrantyPeriod" Nullable="true" />
   </ComplexType>
 </Schema>

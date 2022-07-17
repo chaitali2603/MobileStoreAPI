@@ -19,7 +19,7 @@
           <Property Name="UpdatedDate" Type="datetime" />
           <Property Name="CreatedBy" Type="uniqueidentifier" />
           <Property Name="UpdatedBy" Type="uniqueidentifier" />
-          <Property Name="IsDated" Type="bit" />
+          <Property Name="IsDeleted" Type="bit" />
         </EntityType>
         <EntityType Name="AppUser">
           <Key>
@@ -27,7 +27,7 @@
           </Key>
           <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="FirstName" Type="nvarchar(max)" />
-          <Property Name="LasttName" Type="nvarchar(max)" />
+          <Property Name="LastName" Type="nvarchar(max)" />
           <Property Name="DOB" Type="date" />
           <Property Name="Password" Type="nvarchar(max)" />
           <Property Name="CreatedDate" Type="datetime" />
@@ -37,6 +37,7 @@
           <Property Name="IsDeleted" Type="bit" />
           <Property Name="Email" Type="nvarchar(max)" />
           <Property Name="UserType" Type="int" />
+          <Property Name="MobNo" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
@@ -65,7 +66,7 @@
           <Property Name="UpdatedDate" Type="datetime" />
           <Property Name="CreatedBy" Type="uniqueidentifier" />
           <Property Name="UpdatedBy" Type="uniqueidentifier" />
-          <Property Name="IsDated" Type="bit" />
+          <Property Name="IsDeleted" Type="bit" />
           <Property Name="Quantity" Type="decimal" Precision="18" Scale="0" />
         </EntityType>
         <EntityType Name="Product">
@@ -73,22 +74,24 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="Name" Type="nvarchar(max)" />
-          <Property Name="Description" Type="nvarchar(max)" />
-          <Property Name="ImageUrl" Type="nvarchar(max)" />
-          <Property Name="Price" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="Disscount" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="Brand" Type="nvarchar(max)" />
-          <Property Name="Storage" Type="nvarchar(max)" />
-          <Property Name="OS" Type="nvarchar(max)" />
-          <Property Name="Battery" Type="nvarchar(max)" />
-          <Property Name="RAM" Type="nvarchar(max)" />
-          <Property Name="CreatedDate" Type="datetime" />
-          <Property Name="UpdatedDate" Type="datetime" />
-          <Property Name="CreatedBy" Type="uniqueidentifier" />
-          <Property Name="UpdatedBy" Type="uniqueidentifier" />
-          <Property Name="IsDeleted" Type="bit" />
-          <Property Name="Colour" Type="nvarchar(max)" />
+          <Property Name="ModelName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ImageUrl" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Disscount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Brand" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Storage" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="OS" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Battery" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="RAM" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UpdatedBy" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="Colour" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ManufactureYear" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="WarrantyPeriod" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -178,7 +181,7 @@
           <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
           <Property Name="CreatedBy" Type="Guid" />
           <Property Name="UpdatedBy" Type="Guid" />
-          <Property Name="IsDated" Type="Boolean" />
+          <Property Name="IsDeleted" Type="Boolean" />
         </EntityType>
         <EntityType Name="AppUser">
           <Key>
@@ -186,7 +189,7 @@
           </Key>
           <Property Name="Id" Type="Guid" Nullable="false" />
           <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="LasttName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="DOB" Type="DateTime" Precision="0" />
           <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
@@ -196,6 +199,7 @@
           <Property Name="IsDeleted" Type="Boolean" />
           <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="UserType" Type="Int32" />
+          <Property Name="MobNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
@@ -224,7 +228,7 @@
           <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
           <Property Name="CreatedBy" Type="Guid" />
           <Property Name="UpdatedBy" Type="Guid" />
-          <Property Name="IsDated" Type="Boolean" />
+          <Property Name="IsDeleted" Type="Boolean" />
           <Property Name="Quantity" Type="Decimal" Precision="18" Scale="0" />
         </EntityType>
         <EntityType Name="Product">
@@ -232,22 +236,24 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Guid" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ImageUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Price" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="Disscount" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="Brand" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Storage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="OS" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Battery" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="RAM" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
-          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
-          <Property Name="CreatedBy" Type="Guid" />
-          <Property Name="UpdatedBy" Type="Guid" />
-          <Property Name="IsDeleted" Type="Boolean" />
-          <Property Name="Colour" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ModelName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ImageUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Disscount" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Brand" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Storage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="OS" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Battery" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RAM" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="Guid" Nullable="false" />
+          <Property Name="UpdatedBy" Type="Guid" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="Colour" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ManufactureYear" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="WarrantyPeriod" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -273,7 +279,7 @@
           <FunctionImport Name="GetProductByOrderId" ReturnType="Collection(MobileStoreModel.GetProductByOrderId_Result)">
             <Parameter Name="OrderId" Mode="In" Type="Guid" />
           </FunctionImport>
-          <FunctionImport Name="OrderAllProduct" ReturnType="Collection(MobileStoreModel.OrderAllProduct_Result)">
+          <FunctionImport Name="OrderAllProduct">
             <Parameter Name="UserType" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SearchAllProduct" ReturnType="Collection(MobileStoreModel.SearchAllProduct_Result)">
@@ -302,11 +308,11 @@
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(MobileStoreModel.sp_helpdiagramdefinition_Result)">
+          <FunctionImport Name="sp_helpdiagramdefinition">
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(MobileStoreModel.sp_helpdiagrams_Result)">
+          <FunctionImport Name="sp_helpdiagrams">
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -319,7 +325,7 @@
         </EntityContainer>
         <ComplexType Name="GetOrderByUserIdAndUserType_Result">
           <Property Type="String" Name="FirstName" Nullable="true" />
-          <Property Type="String" Name="LasttName" Nullable="true" />
+          <Property Type="String" Name="LastName" Nullable="true" />
           <Property Type="Guid" Name="Id" Nullable="false" />
           <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
         </ComplexType>
@@ -330,48 +336,33 @@
           <Property Type="Guid" Name="ProductId" Nullable="false" />
           <Property Type="String" Name="Price" Nullable="true" />
           <Property Type="Decimal" Name="Quantity" Nullable="true" Precision="18" Scale="0" />
-          <Property Type="String" Name="ProductName" Nullable="true" />
+          <Property Type="String" Name="ProductName" Nullable="false" />
           <Property Type="String" Name="Address" Nullable="true" />
           <Property Type="String" Name="City" Nullable="true" />
           <Property Type="String" Name="State" Nullable="true" />
           <Property Type="Decimal" Name="Pincode" Nullable="true" Precision="18" Scale="0" />
         </ComplexType>
-        <ComplexType Name="OrderAllProduct_Result">
-          <Property Type="String" Name="FirstName" Nullable="true" />
-          <Property Type="String" Name="LasttName" Nullable="true" />
-          <Property Type="Guid" Name="Id" Nullable="false" />
-          <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
-        </ComplexType>
         <ComplexType Name="SearchAllProduct_Result">
           <Property Type="Int32" Name="TotalCount" Nullable="true" />
           <Property Type="Guid" Name="Id" Nullable="false" />
-          <Property Type="String" Name="Name" Nullable="true" />
-          <Property Type="String" Name="Description" Nullable="true" />
-          <Property Type="String" Name="ImageUrl" Nullable="true" />
-          <Property Type="Decimal" Name="Price" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="Disscount" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="String" Name="Brand" Nullable="true" />
-          <Property Type="String" Name="Storage" Nullable="true" />
-          <Property Type="String" Name="OS" Nullable="true" />
-          <Property Type="String" Name="Battery" Nullable="true" />
-          <Property Type="String" Name="RAM" Nullable="true" />
-          <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
-          <Property Type="DateTime" Name="UpdatedDate" Nullable="true" Precision="23" />
-          <Property Type="Guid" Name="CreatedBy" Nullable="true" />
-          <Property Type="Guid" Name="UpdatedBy" Nullable="true" />
-          <Property Type="Boolean" Name="IsDeleted" Nullable="true" />
-          <Property Type="String" Name="Colour" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="sp_helpdiagramdefinition_Result">
-          <Property Type="Int32" Name="version" Nullable="true" />
-          <Property Type="Binary" Name="definition" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="sp_helpdiagrams_Result">
-          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
-          <Property Type="Int32" Name="ID" Nullable="false" />
-          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
-          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+          <Property Type="String" Name="ModelName" Nullable="false" />
+          <Property Type="String" Name="Description" Nullable="false" />
+          <Property Type="String" Name="ImageUrl" Nullable="false" />
+          <Property Type="Decimal" Name="Price" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Disscount" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="String" Name="Brand" Nullable="false" />
+          <Property Type="String" Name="Storage" Nullable="false" />
+          <Property Type="String" Name="OS" Nullable="false" />
+          <Property Type="String" Name="Battery" Nullable="false" />
+          <Property Type="String" Name="RAM" Nullable="false" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="UpdatedDate" Nullable="false" Precision="23" />
+          <Property Type="Guid" Name="CreatedBy" Nullable="false" />
+          <Property Type="Guid" Name="UpdatedBy" Nullable="false" />
+          <Property Type="Boolean" Name="IsDeleted" Nullable="false" />
+          <Property Type="String" Name="Colour" Nullable="false" />
+          <Property Type="String" Name="ManufactureYear" Nullable="false" />
+          <Property Type="String" Name="WarrantyPeriod" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -392,7 +383,7 @@
                 <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="IsDated" ColumnName="IsDated" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -401,7 +392,7 @@
               <MappingFragment StoreEntitySet="AppUser">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="LasttName" ColumnName="LasttName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="DOB" ColumnName="DOB" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
@@ -411,6 +402,7 @@
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="MobNo" ColumnName="MobNo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -441,7 +433,7 @@
                 <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="IsDated" ColumnName="IsDated" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -450,7 +442,7 @@
             <EntityTypeMapping TypeName="MobileStoreModel.Product">
               <MappingFragment StoreEntitySet="Product">
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ModelName" ColumnName="ModelName" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
@@ -466,6 +458,8 @@
                 <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="Colour" ColumnName="Colour" />
+                <ScalarProperty Name="ManufactureYear" ColumnName="ManufactureYear" />
+                <ScalarProperty Name="WarrantyPeriod" ColumnName="WarrantyPeriod" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -484,7 +478,7 @@
             <ResultMapping>
               <ComplexTypeMapping TypeName="MobileStoreModel.GetOrderByUserIdAndUserType_Result">
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="LasttName" ColumnName="LasttName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
               </ComplexTypeMapping>
@@ -507,22 +501,13 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="OrderAllProduct" FunctionName="MobileStoreModel.Store.OrderAllProduct">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="MobileStoreModel.OrderAllProduct_Result">
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="LasttName" ColumnName="LasttName" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="OrderAllProduct" FunctionName="MobileStoreModel.Store.OrderAllProduct" />
           <FunctionImportMapping FunctionImportName="SearchAllProduct" FunctionName="MobileStoreModel.Store.SearchAllProduct">
             <ResultMapping>
               <ComplexTypeMapping TypeName="MobileStoreModel.SearchAllProduct_Result">
                 <ScalarProperty Name="TotalCount" ColumnName="TotalCount" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ModelName" ColumnName="ModelName" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
@@ -538,31 +523,16 @@
                 <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="Colour" ColumnName="Colour" />
+                <ScalarProperty Name="ManufactureYear" ColumnName="ManufactureYear" />
+                <ScalarProperty Name="WarrantyPeriod" ColumnName="WarrantyPeriod" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="MobileStoreModel.Store.sp_alterdiagram" />
           <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="MobileStoreModel.Store.sp_creatediagram" />
           <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="MobileStoreModel.Store.sp_dropdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="MobileStoreModel.Store.sp_helpdiagramdefinition">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="MobileStoreModel.sp_helpdiagramdefinition_Result">
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="MobileStoreModel.Store.sp_helpdiagrams">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="MobileStoreModel.sp_helpdiagrams_Result">
-                <ScalarProperty Name="Database" ColumnName="Database" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Owner" ColumnName="Owner" />
-                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="MobileStoreModel.Store.sp_helpdiagramdefinition" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="MobileStoreModel.Store.sp_helpdiagrams" />
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="MobileStoreModel.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="MobileStoreModel.Store.sp_upgraddiagrams" />
         </EntityContainerMapping>

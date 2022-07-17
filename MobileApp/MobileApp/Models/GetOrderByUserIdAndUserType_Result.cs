@@ -14,7 +14,7 @@ namespace MobileApp.Models
     public partial class GetOrderByUserIdAndUserType_Result
     {
         public string FirstName { get; set; }
-        public string LasttName { get; set; }
+        public string LastName { get; set; }
         public System.Guid Id { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
     }
